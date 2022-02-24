@@ -32,8 +32,11 @@ public class Post extends JFrame
     
     JRadioButton Event, Message, Photo;
     JButton Submit, Show;
-    JTextField Author,MessageP;
-    JLabel label1,label2;
+    JTextField Author,MessageP,EventTypeP,FileP,CaptionP;
+    JLabel label1,label2,label3,label4,label5;
+    MessagePost messageP;
+    EventPost eventP;
+    PhotoPost photoP;
     JTextArea textArea1;
     
     
@@ -131,6 +134,18 @@ public class Post extends JFrame
         
         label2 = new JLabel("Message");
         
+        EventTypeP = new JTextField("", 20);
+        
+        label3 = new JLabel("Event Type");
+        
+        FileP = new JTextField("", 20);
+        
+        label4 = new JLabel("File");
+        
+        CaptionP = new JTextField("", 20);
+        
+        label5 = new JLabel("Caption");
+        
         this.setVisible(true);
         this.setResizable(false);
         /*
@@ -150,10 +165,35 @@ public class Post extends JFrame
             label2 = new JLabel("Message");
             label2.setVisible(false);
             thePanel.add(label2);
+            
+        EventTypeP = new JTextField("", 20);
+        
+            label3 = new JLabel("Event Type");
+            label3.setVisible(false);
+            thePanel.add(label3);
+            
+        FileP = new JTextField("", 20);
+        
+           label4 = new JLabel("File");
+           label4.setVisible(false);
+           thePanel.add(label4);
+           FileP.setVisible(false);
+            thePanel.add(FileP);
+        CaptionP = new JTextField("", 20);
+        
+           label5 = new JLabel("Caption");
+           label5.setVisible(false);
+           thePanel.add(label5);
                 
             // How to add a text field ----------------------
             MessageP.setVisible(false); 
             thePanel.add(MessageP);
+            EventTypeP.setVisible(false);
+            thePanel.add(EventTypeP);
+            //FileP.setVisible(false);
+            //thePanel.add(FileP);
+            CaptionP.setVisible(false);
+            thePanel.add(CaptionP);
             
         Submit = new JButton("Submit");
                 
@@ -179,41 +219,37 @@ public class Post extends JFrame
         Show.setVisible(false);      
         thePanel.add(Show);
        
-		
-		// How to add a text area ----------------------
-		
-		textArea1 = new JTextArea(15, 20);
-				
-		// Set the default text for the text area
-				
-		textArea1.setText("Tracking Events\n");
-				
-		// If text doesn't fit on a line, jump to the next
-		
-		textArea1.setLineWrap(true);
-		
-		// Makes sure that words stay intact if a line wrap occurs
-				
-		textArea1.setWrapStyleWord(true);
-		textArea1.setVisible(false);
-				
-		// Adds scroll bars to the text area ----------
-				
-		JScrollPane scrollbar1 = new JScrollPane(textArea1, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-				
-		// Other options: VERTICAL_SCROLLBAR_ALWAYS, VERTICAL_SCROLLBAR_NEVER
-				
-		thePanel.add(scrollbar1);
-	;
+        
+        // How to add a text area ----------------------
+        
+        textArea1 = new JTextArea(15, 20);
+                
+        // Set the default text for the text area
+                
+        //textArea1.setText("Tracking Events\n");
+                
+        // If text doesn't fit on a line, jump to the next
+        
+        textArea1.setLineWrap(true);
+        
+        // Makes sure that words stay intact if a line wrap occurs
+                
+        textArea1.setWrapStyleWord(true);
+        textArea1.setVisible(false);
+                
+        // Adds scroll bars to the text area ----------
+                
+        //JScrollPane scrollbar1 = new JScrollPane(textArea1, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        //scrollbar1.setVisible(false);     
+        // Other options: VERTICAL_SCROLLBAR_ALWAYS, VERTICAL_SCROLLBAR_NEVER
+                
+        //thePanel.add(scrollbar1);
+        thePanel.add(textArea1);
+    
         
             
                 
-        if(Message.isSelected()){
-            label2.setVisible(true);
-            MessageP.setVisible(true);
-            Submit.setVisible(true);
-            Show.setVisible(true); 
-          }
+        
         this.add(thePanel);
     }
     
@@ -227,6 +263,11 @@ public class Post extends JFrame
         username = author;
         timestamp = System.currentTimeMillis();
 
+    }
+    
+    public String getAuthor()
+    {
+        return username;
     }
 
     /**
@@ -316,9 +357,74 @@ public class Post extends JFrame
                      Submit.setVisible(true);
                      Show.setVisible(true);
                      textArea1.setVisible(true);
-                     
+                     label3.setVisible(false);
+                     EventTypeP.setVisible(false);
+                     label4.setVisible(false);
+                     FileP.setVisible(false);
+                     label5.setVisible(false);
+                     CaptionP.setVisible(false);
                   }
+                if(e.getSource() == Event){
+                     label2.setVisible(false);
+                     MessageP.setVisible(false);
+                     Submit.setVisible(true);
+                     Show.setVisible(true);
+                     textArea1.setVisible(true);
+                     label3.setVisible(true);
+                     EventTypeP.setVisible(true);
+                     label4.setVisible(false);
+                     FileP.setVisible(false);
+                     label5.setVisible(false);
+                     CaptionP.setVisible(false);
+                  }
+                if(e.getSource() == Photo){
+                     label2.setVisible(false);
+                     MessageP.setVisible(false);
+                     Submit.setVisible(true);
+                     Show.setVisible(true);
+                     textArea1.setVisible(true);
+                     label3.setVisible(false);
+                     EventTypeP.setVisible(false);
+                     label4.setVisible(true);
+                     FileP.setVisible(true);
+                     label5.setVisible(true);
+                     CaptionP.setVisible(true);
+                  }
+                if(e.getSource() == Submit){
+                    if(Message.isSelected()){
+                        messageP = new MessagePost(Author.getText(),MessageP.getText());
+                        textArea1.setText("");
+                  }
+                  if(Event.isSelected()){
+                        eventP = new EventPost(Author.getText(),EventTypeP.getText());
+                        textArea1.setText("");
+                  }
+                  if(Photo.isSelected()){
+                        photoP = new PhotoPost(Author.getText(),FileP.getText(),CaptionP.getText());
+                        textArea1.setText("");
+                  }
+                }
+                if(e.getSource() == Show){
+                    if(Message.isSelected()){
+                        textArea1.append("The author of this post is " + messageP.getAuthor());
+                        textArea1.append(" and the message in this post is: " + messageP.getText());
+                        
+                        
+                  }
+                  if(Event.isSelected()){
+                        textArea1.append("The author of this post is " + eventP.getAuthor());
+                        textArea1.append(" and the event type of this post is: " + eventP.getEvent());
+                        
+                  }
+                  if(Photo.isSelected()){
+                        textArea1.append("The author of this post is " + photoP.getAuthor());
+                        textArea1.append(" and the file where the image is " + photoP.getImageFile());
+                        textArea1.append(" and the caption under the image is: " + photoP.getCaption());
+                        
+                  }
+                }
               }
           }   
 }
+
 
