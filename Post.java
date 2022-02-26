@@ -16,6 +16,7 @@ import java.text.NumberFormat;
 // Allows me to edit borders on panels
 
 import javax.swing.border.*;
+import javax.swing.ImageIcon;
 
 /**
  * This class stores information about a news feed post in a 
@@ -31,12 +32,13 @@ public class Post extends JFrame
     long timestamp;
     
     JRadioButton Event, Message, Photo;
-    JButton Submit, Show;
-    JTextField Author,MessageP,EventTypeP,FileP,CaptionP;
+    JButton Submit, Show, Likes, Comment;
+    JTextField Author,MessageP,EventTypeP,FileP,CaptionP,CommentP;
     JLabel label1,label2,label3,label4,label5;
     MessagePost messageP;
     EventPost eventP;
     PhotoPost photoP;
+    CommentedPost likeC;
     JTextArea textArea1;
     
     
@@ -44,7 +46,7 @@ public class Post extends JFrame
         
         // Define the size of the frame
         
-        this.setSize(350, 400);
+        this.setSize(400, 500);
                 
         // Opens the frame in the middle of the screen
         
@@ -146,8 +148,12 @@ public class Post extends JFrame
         
         label5 = new JLabel("Caption");
         
+        CommentP = new JTextField("", 20);
+        
+        
+        
         this.setVisible(true);
-        this.setResizable(false);
+        this.setResizable(true);
         /*
         if(Message.isSelected()){
             MessageP = new JTextField("", 20);
@@ -218,7 +224,31 @@ public class Post extends JFrame
         Show.addActionListener(lForButton);
         Show.setVisible(false);      
         thePanel.add(Show);
-       
+        
+        Likes = new JButton();
+                
+        // Create an instance of ListenForEvents to handle events
+                
+                
+        // Tell Java that you want to be alerted when an event
+        // occurs on the button
+                
+        Likes.addActionListener(lForButton);
+        Likes.setVisible(false); 
+        
+        Comment = new JButton();
+                
+        // Create an instance of ListenForEvents to handle events
+                
+                
+        // Tell Java that you want to be alerted when an event
+        // occurs on the button
+                
+        Comment.addActionListener(lForButton);
+        Comment.setVisible(false); 
+        Comment.setIcon(new ImageIcon("Comment.jpg"));
+        validate();
+        Likes.setIcon(new ImageIcon("Like.png"));
         
         // How to add a text area ----------------------
         
@@ -245,6 +275,10 @@ public class Post extends JFrame
                 
         //thePanel.add(scrollbar1);
         thePanel.add(textArea1);
+        thePanel.add(Likes);
+        thePanel.add(Comment);
+        CommentP.setVisible(false);
+        thePanel.add(CommentP);
     
         
             
@@ -357,6 +391,9 @@ public class Post extends JFrame
                      Submit.setVisible(true);
                      Show.setVisible(true);
                      textArea1.setVisible(true);
+                     Comment.setVisible(true);
+                     CommentP.setVisible(true);
+                     Likes.setVisible(true);
                      label3.setVisible(false);
                      EventTypeP.setVisible(false);
                      label4.setVisible(false);
@@ -370,6 +407,9 @@ public class Post extends JFrame
                      Submit.setVisible(true);
                      Show.setVisible(true);
                      textArea1.setVisible(true);
+                     Comment.setVisible(true);
+                     CommentP.setVisible(true);
+                     Likes.setVisible(true);
                      label3.setVisible(true);
                      EventTypeP.setVisible(true);
                      label4.setVisible(false);
@@ -383,6 +423,9 @@ public class Post extends JFrame
                      Submit.setVisible(true);
                      Show.setVisible(true);
                      textArea1.setVisible(true);
+                     Comment.setVisible(true);
+                     CommentP.setVisible(true);
+                     Likes.setVisible(true);
                      label3.setVisible(false);
                      EventTypeP.setVisible(false);
                      label4.setVisible(true);
@@ -391,6 +434,7 @@ public class Post extends JFrame
                      CaptionP.setVisible(true);
                   }
                 if(e.getSource() == Submit){
+                    likeC = new CommentedPost(Author.getText());
                     if(Message.isSelected()){
                         messageP = new MessagePost(Author.getText(),MessageP.getText());
                         textArea1.setText("");
@@ -407,22 +451,31 @@ public class Post extends JFrame
                 if(e.getSource() == Show){
                     if(Message.isSelected()){
                         textArea1.append("The author of this post is " + messageP.getAuthor());
-                        textArea1.append(" and the message in this post is: " + messageP.getText());
+                        textArea1.append(" and the message in this post is: " + messageP.getText()+ "\n");
                         
+                        }
                         
-                  }
+            
                   if(Event.isSelected()){
                         textArea1.append("The author of this post is " + eventP.getAuthor());
-                        textArea1.append(" and the event type of this post is: " + eventP.getEvent());
+                        textArea1.append(" and the event type of this post is: " + eventP.getEvent()+ "\n");
                         
                   }
                   if(Photo.isSelected()){
                         textArea1.append("The author of this post is " + photoP.getAuthor());
                         textArea1.append(" and the file where the image is " + photoP.getImageFile());
-                        textArea1.append(" and the caption under the image is: " + photoP.getCaption());
+                        textArea1.append(" and the caption under the image is: " + photoP.getCaption()+ "\n");
                         
                   }
                 }
+                if(e.getSource() == Likes){
+                          likeC.like();
+                          textArea1.append(likeC.display1() + "\n");
+                        }
+                if(e.getSource() == Comment){
+                          likeC.addComment(CommentP.getText());
+                          textArea1.append(likeC.display2() + "\n");
+                        }
               }
           }   
 }
