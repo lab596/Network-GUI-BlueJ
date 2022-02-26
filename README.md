@@ -5,4 +5,4 @@ Within this you are able to submit the post and show the post on a text area. Re
 
 Demo:
 
-https://user-images.githubusercontent.com/86579136/155654869-07fffb42-73cf-4113-9696-0583cf445ebc.mp4
+https://user-images.githubusercontent.com/86579136/155832067-8ce4bd11-deea-4cc3-bfe8-b6bec05a71ad.mp4
