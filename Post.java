@@ -249,7 +249,7 @@ public class Post extends JFrame
         Comment.setIcon(new ImageIcon("Comment.jpg"));
         validate();
         Likes.setIcon(new ImageIcon("Like.png"));
-        
+        validate();
         // How to add a text area ----------------------
         
         textArea1 = new JTextArea(15, 20);
