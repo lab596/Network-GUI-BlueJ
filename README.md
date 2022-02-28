@@ -1,7 +1,7 @@
 # Network-GUI-Bluejay
-This is the main project based off of Chapter 10 of the bluejay book in which the goal is to make an inheritance based "Social Network" in which you are able to create posts of different varieties that include the event post picture post as well as the message post. 
+This is the project based off of Chapter 10 of the BlueJ book(https://www.bluej.org/objects-first/). Goal of the project is to make an inheritance based "Social Network" in which you are able to create posts of different varieties like event post, picture post as well as the message post. 
 
-Within this you are able to submit the post and show the post on a text area. Recent features include a like button that allows for likes to show up on all posts as well as a comment button that allows for comments to show up under a post.
+Recent features include a like button that allows for likes to show up on posts as well as a comment button that allows for comments to show up under a post.
 
 Demo:
 
