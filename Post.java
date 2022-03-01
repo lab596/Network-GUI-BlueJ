@@ -16,7 +16,7 @@ import java.text.NumberFormat;
 // Allows me to edit borders on panels
 
 import javax.swing.border.*;
-import javax.swing.ImageIcon;
+//import javax.swing.ImageIcon;
 
 /**
  * This class stores information about a news feed post in a 
@@ -46,7 +46,7 @@ public class Post extends JFrame
         
         // Define the size of the frame
         
-        this.setSize(400, 500);
+        this.setSize(350, 550);
                 
         // Opens the frame in the middle of the screen
         
@@ -67,7 +67,7 @@ public class Post extends JFrame
         
         Event = new JRadioButton("Event");
         Message = new JRadioButton("Message");
-        Photo = new JRadioButton("Photo");
+        Photo = new JRadioButton("Photo                         ");
         
         Event.addActionListener(lForButton);
         Message.addActionListener(lForButton);
@@ -95,7 +95,7 @@ public class Post extends JFrame
         // createEtchedBorder, createLineBorder, createTitledBorder
         // createLoweredBevelBorder, createRaisedBevelBorder
         
-        Border operBorder = BorderFactory.createTitledBorder("Year");
+        Border operBorder = BorderFactory.createTitledBorder("Type of Post");
         
         // Set the border for the panel
         
@@ -106,6 +106,7 @@ public class Post extends JFrame
         operPanel.add(Event);
         operPanel.add(Message);
         operPanel.add(Photo);
+        
         
         // Selects the add radio button by default
         
@@ -122,13 +123,15 @@ public class Post extends JFrame
         // The JPanel contains all of the components for your frame
                 
         
-        label1 = new JLabel("Author");
+        label1 = new JLabel("\nAuthor");
+        //thePanel.setLayout(new BoxLayout(thePanel, BoxLayout.Y_AXIS));
         
         thePanel.add(label1);
+        
                 
         // How to add a text field ----------------------
                 
-        Author = new JTextField("", 20);
+        Author = new JTextField("", 30);
                         
         thePanel.add(Author);
         
@@ -153,7 +156,7 @@ public class Post extends JFrame
         
         
         this.setVisible(true);
-        this.setResizable(true);
+        this.setResizable(false);
         /*
         if(Message.isSelected()){
             MessageP = new JTextField("", 20);
@@ -166,26 +169,26 @@ public class Post extends JFrame
             thePanel.add(MessageP);
           }
           */
-         MessageP = new JTextField("", 20);
+         MessageP = new JTextField("", 29);
         
             label2 = new JLabel("Message");
             label2.setVisible(false);
             thePanel.add(label2);
             
-        EventTypeP = new JTextField("", 20);
+        EventTypeP = new JTextField("", 27);
         
             label3 = new JLabel("Event Type");
             label3.setVisible(false);
             thePanel.add(label3);
             
-        FileP = new JTextField("", 20);
+        FileP = new JTextField("", 32);
         
            label4 = new JLabel("File");
            label4.setVisible(false);
            thePanel.add(label4);
            FileP.setVisible(false);
             thePanel.add(FileP);
-        CaptionP = new JTextField("", 20);
+        CaptionP = new JTextField("", 30);
         
            label5 = new JLabel("Caption");
            label5.setVisible(false);
@@ -225,7 +228,7 @@ public class Post extends JFrame
         Show.setVisible(false);      
         thePanel.add(Show);
         
-        Likes = new JButton();
+        Likes = new JButton(new ImageIcon("Like.png"));
                 
         // Create an instance of ListenForEvents to handle events
                 
@@ -236,7 +239,7 @@ public class Post extends JFrame
         Likes.addActionListener(lForButton);
         Likes.setVisible(false); 
         
-        Comment = new JButton();
+        Comment = new JButton(new ImageIcon("Comment.jpg"));
                 
         // Create an instance of ListenForEvents to handle events
                 
@@ -246,13 +249,13 @@ public class Post extends JFrame
                 
         Comment.addActionListener(lForButton);
         Comment.setVisible(false); 
-        Comment.setIcon(new ImageIcon("Comment.jpg"));
-        validate();
-        Likes.setIcon(new ImageIcon("Like.png"));
-        validate();
+        //Comment.setIcon(new ImageIcon("Comment.jpg"));
+        //validate();
+        //Likes.setIcon(new ImageIcon("Like.png"));
+        //validate();
         // How to add a text area ----------------------
         
-        textArea1 = new JTextArea(15, 20);
+        textArea1 = new JTextArea(15, 30);
                 
         // Set the default text for the text area
                 
