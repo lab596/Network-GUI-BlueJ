@@ -3,7 +3,7 @@ This is the project based off of Chapter 10 of the BlueJ book(https://www.bluej.
 
 Additional features include a _like_ button that allows for likes to show up on posts as well as a _comment_ button that allows for comments to show up under a post.
 
-# Enchancement
+# Enhancement
 
 Past the project described, I hope to make this more than a simulation that simply recreates a social network but actually allows people on different devices to communicate through this shared application.
 
